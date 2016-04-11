@@ -3,6 +3,7 @@ layout: post
 title:  "在IOS9中使用KeychainTouchID"
 date:   2016-04-05 16:08:08 +0800
 categories: develop ios
+excerpt: 本文主要介绍了IOS9中苹果对keychain的安全改进，介绍了SecGenerateKeyPair、SecKeyRawSign和ECDSA算法，简单介绍了服务器参与指纹认证的流程，编写了一个简单的demo使用openssl验签。
 ---
 
 ### 前言
@@ -19,7 +20,7 @@ categories: develop ios
 
 4. 如何使用 SecGenerateKeyPair 和 SecKeyRawSign 请参考[TouchIDKeyChainDemo](https://developer.apple.com/library/ios/samplecode/KeychainTouchID/Introduction/Intro.html#//apple_ref/doc/uid/TP40014530-Intro-DontLinkElementID_2)
 
-### 服务器如何参与验证指纹认证
+### 服务器参与指纹认证
 
 1. 客户端调用SecGenerateKeyPair产生密钥对。
 
