@@ -1,1 +1,0 @@
-# iDivines.github.io
