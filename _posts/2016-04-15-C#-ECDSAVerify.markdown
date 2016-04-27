@@ -8,7 +8,7 @@ excerpt: 本文主要介绍了在C#中使用ECDsaCng验证IOS9产生的ECDSA签�
 
 ### 前言
 
-[在IOS9中使用KeychainTouchID]() 一文中简单介绍了服务器如何参与指纹认证的流程，以及使用openssl如何验证IOS9产生的ECDSA签名的。本文将着重介绍在服务器中使用C#验证IOS9产生的ECDSA签名数据。
+[在IOS9中使用KeychainTouchID](http://idivines.com/develop/ios/2016/04/05/IOS9-KeychainTouchID.html) 一文中简单介绍了服务器如何参与指纹认证的流程，以及使用openssl如何验证IOS9产生的ECDSA签名的。本文将着重介绍在服务器中使用C#验证IOS9产生的ECDSA签名数据。
 
 ### 公钥格式说明
 
@@ -25,7 +25,7 @@ excerpt: 本文主要介绍了在C#中使用ECDsaCng验证IOS9产生的ECDSA签�
 		                      };
 
 
-		//将第一个字节 0x04 换成{ 0x45,0x43,0x53,0x31,0x20,0x00,0x00 }    
+		//将第一个字节 0x04 换成 0x45,0x43,0x53,0x31,0x20,0x00,0x00    
 		byte[] pubkeyForCSharp = {
 								  0x45,0x43,0x53,0x31,0x20,0x00,0x00,
 								  0xa1,0xe1,0xd1,0xdd,0xad,0xd5,0xbb,0x05,0xc8,0xce,0x29,0x8c,0xe4,0x27,0x02,
@@ -38,7 +38,7 @@ excerpt: 本文主要介绍了在C#中使用ECDsaCng验证IOS9产生的ECDSA签�
 ### 签名数据格式说明
 
 1. ECDSA签名结果其实就是两个很大的整数r和s，由于普通的数据类型不够，所以就用数组来表示，r和s都是32个字节的长度，总共是64个字节
-2. SecKeyRawSign 签名的结果是采用x9.62 DER编码的，所以会看到最终的结果大于64个字节，有70字节，71字节，72字节三种情况，这里是由于编码引起的。
+2. SecKeyRawSign 签名的结果是采用ASN1编码的，所以会看到最终的结果大于64个字节，采用ASN1编码的结果会产生70bytes，71bytes，72bytes三种情况。
 3. C#中使用 ECDsaCng.SingData() 来签名数据，结果是64个字节的，是原始的数据。
 4. 这里我们需要对SecKeyRawSign 签名的结果进行解码，这里需要一点ASN1编码的知识,具体如下：
 
