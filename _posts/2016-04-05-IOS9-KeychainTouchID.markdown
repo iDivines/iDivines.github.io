@@ -142,9 +142,9 @@ excerpt: 本文主要介绍了IOS9中苹果对keychain的安全改进，介绍�
 	        if (status == errSecSuccess) {
 	            uint8_t sign[128];
 	            size_t signatureLength = sizeof(sign);
-	            uint8_t dataToSign[200];
-	            uint8_t hash[CC_SHA1_DIGEST_LENGTH];
-	            CC_SHA256(dataToSign, CC_SHA1_DIGEST_LENGTH, hash);
+	            uint8_t dataToSign[12];
+	            uint8_t hash[CC_SHA256_DIGEST_LENGTH];
+	            CC_SHA256(dataToSign, 12, hash);
 	            
 	            //调用SecKeyRawSign的时候系统会自动调起Touch ID验证用户指纹
 	            //指纹的验证和数据的签名都在Secure Enclave中进行保证了安全
