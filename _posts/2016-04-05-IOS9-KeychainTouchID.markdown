@@ -195,6 +195,6 @@ excerpt: 本文主要介绍了IOS9中苹果对keychain的安全改进，介绍�
 
 ### 备注
 
-1. 我测试发现如果多次调用generateKeyAsync且kSecAttrLabel不变，使用SecKeyRawSign可以签名成功，但是使用openssl验签就会失败，所以在调用generateKeyAsync之前先调用deleteKeyAsync。
+1. 注意在产生新的公私钥对前需要调用 deleteKeyAsync ，如果私钥已经存在调用 SecKeyGeneratePair 是会产生新的公私钥对，但是keychian中已经存在的私钥是不会被替换的，大家可以自己测试。
 
 2. openssl的ios库可以使用[OpenSSL-for-iPhone](https://github.com/x2on/OpenSSL-for-iPhone/)，一个命令就可以自动打包，非常方便。
